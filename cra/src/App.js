@@ -1,6 +1,7 @@
 import React from 'react';
 import { Routes, Route, Link, Navigate } from 'react-router-dom';
 import './styles.css';
+import { setTheme } from './theme';
 
 function Header({ label }) {
   return (
@@ -45,6 +46,33 @@ function AudioButton() {
   return (
     <button className="audio-toggle" type="button" onClick={toggle}>
       {isPlaying ? 'pause' : 'play'}
+    </button>
+  );
+}
+
+function ThemeToggle() {
+  const [mode, setMode] = React.useState(() => {
+    const attr = document.documentElement.getAttribute('data-theme');
+    if (attr === 'light' || attr === 'dark') return attr;
+    const prefersDark =
+      typeof window !== 'undefined' &&
+      window.matchMedia &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches;
+    return prefersDark ? 'dark' : 'light';
+  });
+
+  function toggle() {
+    const next = mode === 'dark' ? 'light' : 'dark';
+    setMode(next);
+    setTheme(next);
+  }
+
+  const glyph = mode === 'dark' ? '☼' : '☾';
+  const label = mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+
+  return (
+    <button className="theme-toggle" type="button" onClick={toggle} aria-label={label} title={label}>
+      {glyph}
     </button>
   );
 }
@@ -183,6 +211,7 @@ function AlgorithmSculpting() {
 export default function App() {
   return (
     <>
+      <ThemeToggle />
       <AudioButton />
       <Routes>
         <Route path="/" element={<Home />} />

@@ -209,6 +209,19 @@ a:active {
   z-index: 9999;
 }
 
+.theme-toggle {
+  position: fixed;
+  top: 12px;
+  right: 56px; /* sit just left of audio toggle */
+  background: transparent;
+  color: inherit;
+  border: none;
+  padding: 4px 8px;
+  font: inherit;
+  cursor: pointer;
+  z-index: 9999;
+}
+
 /* Visualizer removed */
 
 /* Horizontal full-viewport gallery */
