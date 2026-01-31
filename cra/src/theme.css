@@ -1,0 +1,39 @@
+/* Design tokens: minimal and extensible */
+
+/* Light tokens (default) */
+:root {
+  --bg: #ffffff;
+  --fg: #0b0b0b;
+  --muted: #6b7280;
+  --accent: #553cff;
+
+  --radius: 0px;
+  --maxw: 720px;
+}
+
+/* Explicit light override */
+:root[data-theme='light'] {
+  --bg: #ffffff;
+  --fg: #0b0b0b;
+  --muted: #6b7280;
+  --accent: #553cff;
+}
+
+/* Dark tokens */
+:root[data-theme='dark'] {
+  --bg: #0b0b0b;
+  --fg: #e8e8e8;
+  --muted: #9aa0a6;
+  --accent: #7c5cff;
+}
+
+/* System preference fallback when no explicit theme is set */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]), :root[data-theme='system'] {
+    --bg: #0b0b0b;
+    --fg: #e8e8e8;
+    --muted: #9aa0a6;
+    --accent: #7c5cff;
+  }
+}
+
