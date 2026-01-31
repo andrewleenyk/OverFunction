@@ -319,9 +319,9 @@ a:active {
   margin: 0;
 }
 .poem-card p {
-  margin: 0.4em 0;
+  margin: 0.75em 0;
   font-size: clamp(12px, 1.6vw, 16px);
-  line-height: 1.6;
+  line-height: 1.9;
   letter-spacing: 0.01em;
 }
 .poem-card figcaption {
