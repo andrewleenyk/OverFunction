@@ -1,0 +1,280 @@
+:root {
+  color-scheme: light dark;
+  --bg: #0b0b0b;
+  --fg: #e8e8e8;
+  --muted: #9aa0a6;
+  --accent: #7c5cff;
+  --maxw: 720px;
+  --radius: 0px;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #ffffff;
+    --fg: #0b0b0b;
+    --muted: #6b7280;
+    --accent: #553cff;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+    Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  max-width: none;
+  margin: 0;
+  padding: 24px 16px 56px;
+}
+
+/* Gallery page: full-viewport, no padding to avoid vertical scroll */
+.gallery-full {
+  padding: 24px 16px 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.gallery-full .header {
+  position: static;
+  padding: 32px 0 12px;
+  background: transparent;
+  z-index: auto;
+}
+.gallery-full .hgallery {
+  height: auto;
+  flex: 1;
+}
+.gallery-full .hslide {
+  height: 100%;
+}
+.gallery-full .hslide img {
+  transform: none;
+}
+
+.header {
+  padding: 32px 0 12px;
+}
+
+.site-title {
+  font-size: 28px;
+  letter-spacing: -0.02em;
+  margin: 0 0 4px 0;
+}
+.site-title .title-sep {
+  margin: 0 8px;
+  color: var(--muted);
+}
+.site-title .page-label {
+  color: var(--muted);
+  font-weight: 400;
+  white-space: nowrap;
+  font-size: 0.9em;
+}
+
+.tagline {
+  margin: 0;
+  color: var(--muted);
+}
+
+.gallery {
+  margin-top: 28px;
+  border: 1px dashed color-mix(in oklab, var(--fg) 28%, transparent);
+  border-radius: 0;
+  padding: 28px;
+}
+
+.placeholder {
+  color: var(--muted);
+  text-align: center;
+}
+
+.footer {
+  margin-top: 40px;
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+}
+
+/* Mosaic gallery */
+.mosaic {
+  column-gap: 16px;
+  column-fill: balance;
+}
+
+/* responsive column counts */
+@media (min-width: 360px) {
+  .mosaic {
+    column-count: 2;
+  }
+}
+@media (min-width: 640px) {
+  .mosaic {
+    column-count: 3;
+  }
+}
+@media (min-width: 960px) {
+  .mosaic {
+    column-count: 4;
+  }
+}
+
+.tile {
+  display: inline-block;
+  width: 100%;
+  margin: 0 0 16px 0;
+  break-inside: avoid;
+  transition: transform 120ms ease, filter 120ms ease;
+  filter: drop-shadow(
+    0 4px 16px color-mix(in oklab, var(--fg) 12%, transparent)
+  );
+}
+
+.tile img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 0;
+}
+
+.tile:hover {
+  transform: scale(1.02);
+}
+
+/* Scatter layout removed */
+
+/* Minimal prose styling for articles */
+.prose {
+  max-width: 72ch;
+}
+.prose .lead {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.prose h3 {
+  margin: 1.75em 0 0.5em;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+.prose p,
+.prose ul {
+  margin: 0.75em 0;
+}
+.prose ul {
+  padding-left: 1.25rem;
+}
+
+/* Post layout: text left, media right */
+.post {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  min-height: 60vh;
+  align-items: stretch;
+}
+.post-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+.post-media img {
+  max-width: min(80%, 520px);
+  height: auto;
+  display: block;
+}
+
+.post .prose { max-width: none; }
+
+/* Links: no underline, inherit color in all states */
+a,
+a:visited,
+a:hover,
+a:active {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Audio toggle button - minimal fixed control */
+.audio-toggle {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  color: inherit;
+  border: none;
+  padding: 4px 8px;
+  font: inherit;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+/* Visualizer removed */
+
+/* Horizontal full-viewport gallery */
+.hgallery {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  width: 100vw;
+  height: 100vh;
+  -webkit-overflow-scrolling: touch;
+}
+.hslide {
+  flex: 0 0 100vw;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  scroll-snap-align: center;
+}
+.hslide img {
+  max-width: 100vw;
+  max-height: 100vh;
+  object-fit: contain;
+  display: block;
+}
+
+/* Algorithm Sculpting page: fixed header and full-viewport split */
+.post-full {
+  padding: 24px 16px 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.post-full .header {
+  position: static;
+  padding: 32px 0 12px;
+  background: transparent;
+  z-index: auto;
+}
+.post-full .post {
+  height: auto;
+  flex: 1;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 24px;
+}
+.post-full .post-media img {
+  max-height: calc(70vh - 48px);
+  max-width: calc(100% - 48px);
+  transform: none;
+}
