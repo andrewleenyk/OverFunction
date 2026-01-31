@@ -44,8 +44,14 @@ function AudioButton() {
   }
 
   return (
-    <button className="audio-toggle" type="button" onClick={toggle}>
-      {isPlaying ? 'pause' : 'play'}
+    <button
+      className="audio-toggle"
+      type="button"
+      onClick={toggle}
+      aria-label={isPlaying ? 'Pause audio' : 'Play audio'}
+      title={isPlaying ? 'Pause' : 'Play'}
+    >
+      {isPlaying ? '⏸' : '▶'}
     </button>
   );
 }
