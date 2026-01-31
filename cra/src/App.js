@@ -89,7 +89,7 @@ function Home() {
       <Header label="my vomit journal" />
       <nav className="home-links" aria-label="site">
         <ul>
-          <li><Link to="/gallery">gallery</Link></li>
+          <li><Link to="/gallery" aria-label="gallery" title="gallery">🎨</Link></li>
           <li><Link to="/algorithm-sculpting">algorithm sculpting</Link></li>
         </ul>
       </nav>
@@ -177,7 +177,7 @@ function Gallery() {
 
   return (
     <main className="container gallery-full">
-      <Header label="gallery" />
+      <Header label="🎨" />
       <HorizontalGallery images={images} />
     </main>
   );
