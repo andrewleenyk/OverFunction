@@ -53,6 +53,12 @@ function Home() {
   return (
     <main className="container">
       <Header label="my vomit journal" />
+      <nav className="home-links" aria-label="site">
+        <ul>
+          <li><Link to="/gallery">gallery</Link></li>
+          <li><Link to="/algorithm-sculpting">algorithm sculpting</Link></li>
+        </ul>
+      </nav>
       <section className="poem">
         <figure className="poem-card">
           <blockquote>
@@ -64,12 +70,6 @@ function Home() {
           <figcaption>— Me</figcaption>
         </figure>
       </section>
-      <nav className="home-links" aria-label="site">
-        <ul>
-          <li><Link to="/gallery">gallery</Link></li>
-          <li><Link to="/algorithm-sculpting">algorithm sculpting</Link></li>
-        </ul>
-      </nav>
     </main>
   );
 }
