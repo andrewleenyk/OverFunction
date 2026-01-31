@@ -316,3 +316,7 @@ a:active {
   color: var(--muted);
   font-size: 0.8rem;
 }
+
+.poem-card .poem-muted {
+  color: var(--muted);
+}

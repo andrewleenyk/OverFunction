@@ -64,7 +64,7 @@ function Home() {
           <blockquote>
             <p>We lent it our hands until it learned to be its own.</p>
             <p>Now our hands hang still, with nothing left to make.</p>
-            <p>We spent our lives in the making, and forgot how to be.</p>
+            <p className="poem-muted">We spent our lives in the making, and forgot how to be.</p>
             <p>Now our thoughts may build what hands never could.</p>
           </blockquote>
           <figcaption>— Me</figcaption>
