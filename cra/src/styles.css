@@ -238,6 +238,7 @@ a:active {
   width: 100vw;
   height: 100vh;
   -webkit-overflow-scrolling: touch;
+  position: relative;
 }
 .hslide {
   flex: 0 0 100vw;
@@ -251,6 +252,18 @@ a:active {
   max-height: 100vh;
   object-fit: contain;
   display: block;
+}
+/* Minimal swipe indicator */
+.swipe-hint {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--muted);
+  opacity: 0.55;
+  font-size: clamp(16px, 3.2vw, 22px);
+  user-select: none;
+  pointer-events: none;
 }
 
 /* Algorithm Sculpting page: fixed header and full-viewport split */

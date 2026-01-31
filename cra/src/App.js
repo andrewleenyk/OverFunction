@@ -76,6 +76,7 @@ function Home() {
 
 function HorizontalGallery({ images }) {
   const ref = React.useRef(null);
+  const [showHint, setShowHint] = React.useState(true);
   const prefersReduced =
     typeof window !== 'undefined' &&
     window.matchMedia &&
@@ -84,6 +85,7 @@ function HorizontalGallery({ images }) {
   React.useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    const hide = () => setShowHint(false);
     function onKey(e) {
       if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
       const slideW = el.clientWidth || window.innerWidth;
@@ -94,7 +96,13 @@ function HorizontalGallery({ images }) {
       e.preventDefault();
     }
     el.addEventListener('keydown', onKey);
-    return () => el.removeEventListener('keydown', onKey);
+    el.addEventListener('scroll', hide, { passive: true });
+    const t = window.setTimeout(hide, 3500);
+    return () => {
+      el.removeEventListener('keydown', onKey);
+      el.removeEventListener('scroll', hide);
+      window.clearTimeout(t);
+    };
   }, [images, prefersReduced]);
 
   return (
@@ -110,6 +118,7 @@ function HorizontalGallery({ images }) {
           />
         </figure>
       ))}
+      {showHint && <div className="swipe-hint" aria-hidden="true">↔︎</div>}
     </section>
   );
 }
