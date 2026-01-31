@@ -161,7 +161,8 @@ function Gallery() {
   const [images, setImages] = React.useState(null);
   React.useEffect(() => {
     let cancelled = false;
-    fetch('/images/images.json', { cache: 'no-store' })
+    const url = '/images/images.json?v=3';
+    fetch(url, { cache: 'no-store' })
       .then(r => (r.ok ? r.json() : []))
       .then(list => {
         if (cancelled) return;
