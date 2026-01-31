@@ -310,7 +310,8 @@ a:active {
 
 /* Poem presentation */
 .poem {
-  margin: 8vh auto 4vh;
+  margin: 0 auto;
+  min-height: 68vh;
   display: grid;
   place-items: center;
   padding: 0 16px;
