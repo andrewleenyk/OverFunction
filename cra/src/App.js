@@ -169,7 +169,14 @@ function Gallery() {
         const names = Array.isArray(list) && list.length ? list : ['elephantdanielfirman.jpg', 'hefti.webp', 'fishman.jpg'];
         setImages(names.map(n => (n.startsWith('http') ? n : '/images/' + n.replace(/^\//, ''))));
       })
-      .catch(() => { if (!cancelled) setImages(['/images/elephantdanielfirman.jpg', '/images/hefti.webp', '/images/emilalzamora.webp', '/images/rothko.jpg']); });
+      .catch(() => { if (!cancelled) setImages([
+        '/images/elephantdanielfirman.jpg',
+        '/images/hefti.webp',
+        '/images/emilalzamora.webp',
+        '/images/rothko.jpg',
+        '/images/mariamartins.jpg',
+        '/images/Remedios.jpg'
+      ]); });
     return () => { cancelled = true; };
   }, []);
 
