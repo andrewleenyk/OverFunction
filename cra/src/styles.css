@@ -287,28 +287,22 @@ a:active {
   padding: 0 16px;
 }
 .poem-card {
-  max-width: 42rem;
+  max-width: 36rem;
   width: 100%;
   text-align: center;
-  padding: clamp(20px, 6vw, 48px);
-  border: 1px solid color-mix(in oklab, var(--fg) 14%, transparent);
-  border-radius: var(--radius);
-  background: color-mix(in oklab, var(--bg) 92%, transparent);
-  box-shadow:
-    0 10px 30px -10px color-mix(in oklab, var(--fg) 12%, transparent),
-    inset 0 1px 0 color-mix(in oklab, var(--fg) 6%, transparent);
+  padding: 0;
 }
 .poem-card blockquote {
   margin: 0;
 }
 .poem-card p {
-  margin: 0.6em 0;
-  font-size: clamp(18px, 2.4vw, 26px);
-  line-height: 1.55;
+  margin: 0.4em 0;
+  font-size: clamp(12px, 1.6vw, 16px);
+  line-height: 1.6;
   letter-spacing: 0.01em;
 }
 .poem-card figcaption {
-  margin-top: clamp(12px, 2vw, 18px);
+  margin-top: clamp(8px, 1.5vw, 14px);
   color: var(--muted);
-  font-size: 0.925rem;
+  font-size: 0.8rem;
 }
