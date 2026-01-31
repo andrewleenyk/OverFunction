@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirecting…</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      html,body{height:100%}body{display:grid;place-items:center;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;background:#0000;color:#666}
+    </style>
+  </head>
+  <body>
+    <noscript>Loading…</noscript>
+    <script>
+      // Redirect any non-root path to the SPA entry with the original path in ?p=
+      (function() {
+        var l = window.location;
+        var path = l.pathname + (l.search || '');
+        var target = '/' + '?p=' + encodeURIComponent(path) + (l.hash || '');
+        l.replace(target);
+      })();
+    </script>
+  </body>
+  </html>
