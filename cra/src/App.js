@@ -53,7 +53,18 @@ function Home() {
   return (
     <main className="container">
       <Header label="my vomit journal" />
-      <nav className="home-links">
+      <section className="poem">
+        <figure className="poem-card">
+          <blockquote>
+            <p>We lent it our hands until it learned to be its own.</p>
+            <p>Now our hands hang still, with nothing left to make.</p>
+            <p>We spent our lives in the making, and forgot how to be.</p>
+            <p>Now our thoughts may build what hands never could.</p>
+          </blockquote>
+          <figcaption>— Me</figcaption>
+        </figure>
+      </section>
+      <nav className="home-links" aria-label="site">
         <ul>
           <li><Link to="/gallery">gallery</Link></li>
           <li><Link to="/algorithm-sculpting">algorithm sculpting</Link></li>
