@@ -279,6 +279,16 @@ a:active {
   transform: none;
 }
 
+/* Home nav links - no bullets */
+.home-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px 0;
+}
+.home-links li {
+  margin: 6px 0;
+}
+
 /* Poem presentation */
 .poem {
   margin: 8vh auto 4vh;
