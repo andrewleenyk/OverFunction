@@ -47,6 +47,7 @@ body {
 .gallery-full .hslide {
   height: 100%;
   flex: 0 0 100%;
+  min-height: 80vh; /* ensure vertical centering space on mobile for short images */
 }
 .gallery-full .hslide img {
   transform: none;
