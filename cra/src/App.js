@@ -90,7 +90,6 @@ function Home() {
       <nav className="home-links" aria-label="site">
         <ul>
           <li><Link to="/gallery" aria-label="gallery" title="gallery">🖼️</Link></li>
-          <li><Link to="/algorithm-sculpting">algorithm sculpting</Link></li>
         </ul>
       </nav>
       <section className="poem">
