@@ -293,6 +293,69 @@ a:active {
   transform: none;
 }
 
+/* OKLCH demo */
+.oklch-demo {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  align-items: start;
+}
+.oklch-preview {
+  width: min(640px, 100%);
+  height: 200px;
+  border: 1px solid color-mix(in oklab, var(--fg) 14%, transparent);
+  border-radius: var(--radius);
+}
+.oklch-controls .row {
+  display: grid;
+  grid-template-columns: 24px 1fr 84px auto;
+  gap: 8px;
+  align-items: center;
+  margin: 6px 0;
+}
+.oklch-controls input[type="range"] {
+  width: 100%;
+}
+.oklch-controls input[type="number"] {
+  width: 84px;
+  background: transparent;
+  color: inherit;
+  border: 1px solid color-mix(in oklab, var(--fg) 18%, transparent);
+  border-radius: 4px;
+  padding: 2px 6px;
+}
+.oklch-controls .unit { color: var(--muted); }
+.oklch-controls .code {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+.oklch-controls .code code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.9rem;
+}
+.oklch-controls .ghost {
+  background: transparent;
+  color: inherit;
+  border: 1px solid color-mix(in oklab, var(--fg) 18%, transparent);
+  border-radius: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+.oklch-strip {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 8px;
+  max-width: min(640px, 100%);
+}
+.oklch-strip .sw {
+  aspect-ratio: 1 / 1;
+  border: 1px solid color-mix(in oklab, var(--fg) 14%, transparent);
+  border-radius: 2px;
+}
+
 /* Home nav links - no bullets */
 .home-links ul {
   list-style: none;

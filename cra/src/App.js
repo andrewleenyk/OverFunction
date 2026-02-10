@@ -221,6 +221,73 @@ function AlgorithmSculpting() {
   );
 }
 
+function OklchDemo() {
+  const [l, setL] = React.useState(70);      // 0–100 (percent)
+  const [c, setC] = React.useState(0.12);    // ~0–0.4 common gamut
+  const [h, setH] = React.useState(40);      // 0–360 degrees
+  const cssColor = `oklch(${l}% ${c} ${h})`;
+  const supports = typeof window !== 'undefined'
+    ? CSS.supports('color', 'oklch(70% 0.12 40)')
+    : true;
+
+  function copy() {
+    navigator.clipboard?.writeText(cssColor).catch(() => {});
+  }
+
+  const tints = Array.from({ length: 7 }, (_, i) => {
+    const ll = Math.round((15 + i * 12)); // 15%..87%
+    return `oklch(${ll}% ${c} ${h})`;
+  });
+
+  return (
+    <main className="container">
+      <Header label="oklch" />
+      <section className="oklch-demo">
+        <div className="oklch-preview" style={{ background: cssColor }} />
+        <div className="oklch-controls">
+          <div className="row">
+            <label htmlFor="l">L</label>
+            <input id="l" type="range" min="0" max="100" step="1" value={l}
+                   onChange={e => setL(Number(e.target.value))} />
+            <input type="number" min="0" max="100" step="1" value={l}
+                   onChange={e => setL(Math.max(0, Math.min(100, Number(e.target.value))))} />
+            <span className="unit">%</span>
+          </div>
+          <div className="row">
+            <label htmlFor="c">C</label>
+            <input id="c" type="range" min="0" max="0.4" step="0.001" value={c}
+                   onChange={e => setC(Number(e.target.value))} />
+            <input type="number" min="0" max="1" step="0.001" value={c}
+                   onChange={e => setC(Math.max(0, Math.min(1, Number(e.target.value))))} />
+          </div>
+          <div className="row">
+            <label htmlFor="h">h</label>
+            <input id="h" type="range" min="0" max="360" step="1" value={h}
+                   onChange={e => setH(Number(e.target.value))} />
+            <input type="number" min="0" max="360" step="1" value={h}
+                   onChange={e => setH(Math.max(0, Math.min(360, Number(e.target.value))))} />
+            <span className="unit">°</span>
+          </div>
+          <div className="code">
+            <code>background: {cssColor};</code>
+            <button type="button" onClick={copy} className="ghost">copy</button>
+          </div>
+          {!supports && (
+            <p className="note">
+              Your browser may not render OKLCH. Try a recent Chrome, Edge, Safari, or Firefox.
+            </p>
+          )}
+        </div>
+        <div className="oklch-strip">
+          {tints.map((bg, i) => (
+            <div key={i} className="sw" style={{ background: bg }} title={bg} />
+          ))}
+        </div>
+      </section>
+    </main>
+  );
+}
+
 export default function App() {
   return (
     <>
@@ -230,6 +297,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/algorithm-sculpting" element={<AlgorithmSculpting />} />
+        <Route path="/oklch" element={<OklchDemo />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </>
