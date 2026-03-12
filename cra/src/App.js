@@ -22,14 +22,19 @@ function AudioButton() {
   const [isPlaying, setIsPlaying] = React.useState(false);
 
   React.useEffect(() => {
+    const nextSrc = encodeURI('/assets/audio/Mellizos and Rami - Snakes.mp3');
     let el = document.getElementById('site-audio');
     if (!el) {
       el = document.createElement('audio');
       el.id = 'site-audio';
       el.preload = 'auto';
-      el.src = encodeURI('/assets/audio/TEED, ANOTR - Sound of You  (Extended Mix).mp3');
       el.style.display = 'none';
       document.body.appendChild(el);
+    }
+    if (el.src !== new URL(nextSrc, window.location.origin).href) {
+      el.pause();
+      el.currentTime = 0;
+      el.src = nextSrc;
     }
     audioRef.current = el;
   }, []);

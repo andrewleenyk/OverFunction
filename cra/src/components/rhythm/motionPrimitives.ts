@@ -32,7 +32,7 @@ export function getMotionStyle(
 
     case 'glow':
       return {
-        boxShadow: `0 0 ${10 + strength * 28}px rgba(132, 132, 132, ${0.06 + strength * 0.14})`,
+        boxShadow: `0 0 ${10 + strength * 24}px color-mix(in oklab, currentColor ${14 + strength * 20}%, transparent)`,
         opacity: 0.88 + strength * 0.12,
       };
 
@@ -45,7 +45,9 @@ export function getMotionStyle(
     case 'borderBloom':
       return {
         opacity: 0.92 + strength * 0.08,
-        boxShadow: `0 0 ${6 + strength * 18}px rgba(150, 150, 150, ${0.04 + strength * 0.08})`,
+        boxShadow: `0 0 ${8 + strength * 16}px color-mix(in oklab, currentColor ${12 + strength * 16}%, transparent)`,
+        outline: `${1 + strength * 1.5}px solid color-mix(in oklab, currentColor ${16 + strength * 20}%, transparent)`,
+        outlineOffset: `${1 + strength * 2}px`,
       };
 
     default:

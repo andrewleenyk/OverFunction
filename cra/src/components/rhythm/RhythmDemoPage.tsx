@@ -4,9 +4,13 @@ import { RhythmBox } from './RhythmBox';
 import { RhythmButton } from './RhythmButton';
 import { RhythmBorder } from './RhythmBorder';
 import { RhythmMeter } from './RhythmMeter';
+import { RhythmField } from './RhythmField';
+import { RhythmOrchestra } from './RhythmOrchestra';
 import { RhythmPhraseColor } from './RhythmPhraseColor';
+import { RhythmRadioGroup } from './RhythmRadioGroup';
 import { RhythmSwatch } from './RhythmSwatch';
 import { RhythmText } from './RhythmText';
+import { RhythmWordButton } from './RhythmWordButton';
 import { RHYTHM_TOKEN_LIST } from './rhythmTokens';
 import './rhythm.css';
 
@@ -81,6 +85,22 @@ export default function RhythmDemoPage() {
           ))}
         </section>
 
+        <section className="rhythm-interface">
+          <div className="rhythm-showcase__intro">
+            <p className="rhythm-page__eyebrow">Rhythm applied to interface</p>
+            <p className="rhythm-page__lede">
+              The same motion language can govern controls, fields, and micro-typography,
+              not just decorative demo surfaces.
+            </p>
+          </div>
+
+          <div className="rhythm-grid" aria-label="Rhythm interface examples">
+            <RhythmRadioGroup />
+            <RhythmField />
+            <RhythmWordButton />
+          </div>
+        </section>
+
         <section className="rhythm-showcase">
           <div className="rhythm-showcase__intro">
             <p className="rhythm-page__eyebrow">Same world, different properties</p>
@@ -99,6 +119,8 @@ export default function RhythmDemoPage() {
             <RhythmMeter tokenName="sixteenth" label="Sixteenth Meter" segments={8} />
           </div>
         </section>
+
+        <RhythmOrchestra />
       </section>
     </RhythmProvider>
   );
