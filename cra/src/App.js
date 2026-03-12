@@ -3,6 +3,7 @@ import { Routes, Route, Link, Navigate } from 'react-router-dom';
 import './styles.css';
 import { setTheme } from './theme';
 import RhythmDemoPage from './components/rhythm/RhythmDemoPage';
+import PhosphenesPage from './components/phosphenes/PhosphenesPage';
 
 function Header({ label }) {
   return (
@@ -92,6 +93,7 @@ function Home() {
         <ul>
           <li><Link to="/gallery" aria-label="gallery" title="gallery">🖼️</Link></li>
           <li><Link to="/rhythm-demo">Rythm Design System</Link></li>
+          <li><Link to="/phosphenes">Phosphenes</Link></li>
         </ul>
       </nav>
       <section className="poem">
@@ -308,6 +310,15 @@ export default function App() {
             <main className="container">
               <Header label="rhythm demo" />
               <RhythmDemoPage />
+            </main>
+          )}
+        />
+        <Route
+          path="/phosphenes"
+          element={(
+            <main className="container">
+              <Header label="phosphenes" />
+              <PhosphenesPage />
             </main>
           )}
         />

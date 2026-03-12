@@ -1,0 +1,23 @@
+.phosphenes-page {
+  min-height: calc(100vh - 120px);
+  display: grid;
+  place-items: center;
+}
+
+.phosphenes-canvas {
+  display: block;
+  width: min(calc(100vw - 32px), calc(100vh - 160px));
+  height: min(calc(100vw - 32px), calc(100vh - 160px));
+  image-rendering: pixelated;
+}
+
+@media (max-width: 640px) {
+  .phosphenes-page {
+    min-height: calc(100vh - 96px);
+  }
+
+  .phosphenes-canvas {
+    width: calc(100vw - 32px);
+    height: calc(100vw - 32px);
+  }
+}

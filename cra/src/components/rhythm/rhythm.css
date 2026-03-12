@@ -197,17 +197,21 @@
 .rhythm-text {
   display: flex;
   flex-wrap: nowrap;
-  gap: 0;
+  gap: 0.28em;
   white-space: nowrap;
   font-size: clamp(1rem, 3vw, 2.75rem);
   line-height: 1.12;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.015em;
   font-weight: 600;
+}
+
+.rhythm-text__word {
+  display: inline-flex;
+  gap: 0.015em;
 }
 
 .rhythm-text__char {
   display: inline-block;
-  min-width: 0.6ch;
   transform-origin: center bottom;
   will-change: transform, opacity;
 }

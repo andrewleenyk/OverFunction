@@ -7,8 +7,8 @@ const WORD_TOKENS: Record<string, RhythmTokenName> = {
   DESIGN: 'quarter',
   SYSTEMS: 'eighth',
   MOVE: 'triplet',
-  LIKE: 'offbeat',
-  MUSIC: 'sixteenth',
+  LIKE: 'sixteenth',
+  MUSIC: 'offbeat',
 };
 
 function AnimatedChar({
@@ -40,7 +40,11 @@ export function RhythmText() {
   return (
     <section className="rhythm-text" aria-label="DESIGN SYSTEMS MOVE LIKE MUSIC">
       {words.map((word, wordIndex) => (
-        <React.Fragment key={word}>
+        <span
+          key={word}
+          className="rhythm-text__word"
+          data-word-index={wordIndex}
+        >
           {word.split('').map((char, charIndex) => (
             <AnimatedChar
               key={`${word}-${charIndex}`}
@@ -49,14 +53,7 @@ export function RhythmText() {
               index={charIndex}
             />
           ))}
-          {wordIndex < words.length - 1 && (
-            <AnimatedChar
-              char=" "
-              tokenName="quarter"
-              index={wordIndex}
-            />
-          )}
-        </React.Fragment>
+        </span>
       ))}
     </section>
   );
