@@ -2,6 +2,7 @@ import React from 'react';
 import { Routes, Route, Link, Navigate } from 'react-router-dom';
 import './styles.css';
 import { setTheme } from './theme';
+import RhythmDemoPage from './components/rhythm/RhythmDemoPage';
 
 function Header({ label }) {
   return (
@@ -90,6 +91,7 @@ function Home() {
       <nav className="home-links" aria-label="site">
         <ul>
           <li><Link to="/gallery" aria-label="gallery" title="gallery">🖼️</Link></li>
+          <li><Link to="/rhythm-demo">Rythm Design System</Link></li>
         </ul>
       </nav>
       <section className="poem">
@@ -165,7 +167,9 @@ function Gallery() {
       .then(r => (r.ok ? r.json() : []))
       .then(list => {
         if (cancelled) return;
-        const names = Array.isArray(list) && list.length ? list : ['elephantdanielfirman.jpg', 'hefti.webp', 'fishman.jpg'];
+        const names = Array.isArray(list) && list.length
+          ? list
+          : ['elephantdanielfirman.jpg', 'hefti.webp', 'emilalzamora.webp', 'rothko.jpg'];
         setImages(names.map(n => (n.startsWith('http') ? n : '/images/' + n.replace(/^\//, ''))));
       })
       .catch(() => { if (!cancelled) setImages([
@@ -298,6 +302,15 @@ export default function App() {
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/algorithm-sculpting" element={<AlgorithmSculpting />} />
         <Route path="/oklch" element={<OklchDemo />} />
+        <Route
+          path="/rhythm-demo"
+          element={(
+            <main className="container">
+              <Header label="rhythm demo" />
+              <RhythmDemoPage />
+            </main>
+          )}
+        />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </>
