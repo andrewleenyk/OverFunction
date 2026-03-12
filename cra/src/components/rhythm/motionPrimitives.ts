@@ -36,6 +36,18 @@ export function getMotionStyle(
         opacity: 0.88 + strength * 0.12,
       };
 
+    case 'colorShift':
+      return {
+        opacity: 0.94 + strength * 0.06,
+        filter: `saturate(${1 + strength * 0.16}) brightness(${1 + strength * 0.08})`,
+      };
+
+    case 'borderBloom':
+      return {
+        opacity: 0.92 + strength * 0.08,
+        boxShadow: `0 0 ${6 + strength * 18}px rgba(150, 150, 150, ${0.04 + strength * 0.08})`,
+      };
+
     default:
       return {};
   }

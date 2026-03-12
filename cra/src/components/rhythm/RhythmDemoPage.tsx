@@ -2,6 +2,9 @@ import React from 'react';
 import { RhythmProvider } from './RhythmProvider';
 import { RhythmBox } from './RhythmBox';
 import { RhythmButton } from './RhythmButton';
+import { RhythmBorder } from './RhythmBorder';
+import { RhythmMeter } from './RhythmMeter';
+import { RhythmSwatch } from './RhythmSwatch';
 import { RhythmText } from './RhythmText';
 import { RHYTHM_TOKEN_LIST } from './rhythmTokens';
 import './rhythm.css';
@@ -27,7 +30,9 @@ export default function RhythmDemoPage() {
       <section className="rhythm-page">
         <header className="rhythm-page__header">
           <p className="rhythm-page__eyebrow">Rhythm Design System Demo</p>
-          <h2>Rhythm Design System Demo</h2>
+          <div className="rhythm-page__title">
+            <RhythmText />
+          </div>
           <p className="rhythm-page__lede">
             A motion study where every element resolves to the same 130 BPM clock,
             turning rhythm into reusable design-system tokens.
@@ -77,9 +82,23 @@ export default function RhythmDemoPage() {
           ))}
         </section>
 
-        <section className="rhythm-copy">
-          <p className="rhythm-copy__label">Animated sentence</p>
-          <RhythmText />
+        <section className="rhythm-showcase">
+          <div className="rhythm-showcase__intro">
+            <p className="rhythm-page__eyebrow">Same world, different properties</p>
+            <p className="rhythm-page__lede">
+              These examples extend the same rhythmic language into color, border,
+              and progress without breaking the restrained visual system.
+            </p>
+          </div>
+
+          <div className="rhythm-grid" aria-label="Rhythm showcase examples">
+            <RhythmSwatch tokenName="quarter" label="Quarter Color Shift" hue={255} />
+            <RhythmSwatch tokenName="offbeat" label="Offbeat Swatch" hue={22} />
+            <RhythmBorder tokenName="eighth" label="Eighth Border Bloom" />
+            <RhythmBorder tokenName="swingLight" label="Swing Border Bloom" />
+            <RhythmMeter tokenName="triplet" label="Triplet Meter" segments={9} />
+            <RhythmMeter tokenName="sixteenth" label="Sixteenth Meter" segments={8} />
+          </div>
         </section>
       </section>
     </RhythmProvider>

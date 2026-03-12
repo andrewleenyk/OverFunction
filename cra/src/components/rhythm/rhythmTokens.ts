@@ -6,7 +6,12 @@ export type RhythmTokenName =
   | 'offbeat'
   | 'swingLight';
 
-export type RhythmPrimitiveName = 'pulse' | 'nudge' | 'glow';
+export type RhythmPrimitiveName =
+  | 'pulse'
+  | 'nudge'
+  | 'glow'
+  | 'colorShift'
+  | 'borderBloom';
 
 export interface RhythmToken {
   name: RhythmTokenName;
