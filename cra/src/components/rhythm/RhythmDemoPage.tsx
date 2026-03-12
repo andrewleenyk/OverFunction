@@ -4,6 +4,7 @@ import { RhythmBox } from './RhythmBox';
 import { RhythmButton } from './RhythmButton';
 import { RhythmBorder } from './RhythmBorder';
 import { RhythmMeter } from './RhythmMeter';
+import { RhythmPhraseColor } from './RhythmPhraseColor';
 import { RhythmSwatch } from './RhythmSwatch';
 import { RhythmText } from './RhythmText';
 import { RHYTHM_TOKEN_LIST } from './rhythmTokens';
@@ -40,10 +41,6 @@ export default function RhythmDemoPage() {
         </header>
 
         <aside className="rhythm-meta">
-          <div className="rhythm-meta__item">
-            <span className="rhythm-meta__label">BPM</span>
-            <strong>130</strong>
-          </div>
           <div className="rhythm-meta__item rhythm-meta__item--wide">
             <span className="rhythm-meta__label">Tokens</span>
             <div className="rhythm-token-list">
@@ -55,7 +52,7 @@ export default function RhythmDemoPage() {
           <div className="rhythm-meta__item rhythm-meta__item--wide">
             <span className="rhythm-meta__label">Experiment</span>
             <p>
-              One global clock. Small motion amplitudes. Shared rhythm language.
+              One global 130 BPM clock. Small motion amplitudes. Shared rhythm language.
             </p>
           </div>
         </aside>
@@ -70,6 +67,8 @@ export default function RhythmDemoPage() {
             />
           ))}
         </section>
+
+        <RhythmPhraseColor />
 
         <section className="rhythm-controls" aria-label="Rhythm demo buttons">
           {BUTTON_DEMOS.map((demo) => (

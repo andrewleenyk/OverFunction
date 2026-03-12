@@ -59,6 +59,62 @@
   color: var(--muted);
 }
 
+.rhythm-phrase {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: end;
+  min-height: 184px;
+  padding: 20px 24px;
+  border-radius: 24px;
+  color: rgba(255, 255, 255, 0.96);
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.rhythm-phrase .rhythm-card__eyebrow {
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.rhythm-phrase__copy {
+  display: grid;
+  gap: 10px;
+  max-width: 44ch;
+}
+
+.rhythm-phrase__copy h3 {
+  margin: 0;
+  font-size: clamp(1.6rem, 3vw, 2.8rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.rhythm-phrase__copy p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.5;
+}
+
+.rhythm-phrase__beats {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.rhythm-phrase__beats span {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.28);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+}
+
+.rhythm-phrase__beats span.is-active {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.45);
+}
+
 .rhythm-meta__item--wide {
   min-height: 96px;
 }
@@ -219,6 +275,13 @@
 @media (max-width: 640px) {
   .rhythm-page {
     gap: 18px;
+  }
+
+  .rhythm-phrase {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    align-items: start;
+    min-height: 172px;
   }
 
   .rhythm-button {
