@@ -1,9 +1,9 @@
-import React from 'react';
-import { Routes, Route, Link, Navigate } from 'react-router-dom';
-import './styles.css';
-import { setTheme } from './theme';
-import RhythmDemoPage from './components/rhythm/RhythmDemoPage';
-import PhosphenesPage from './components/phosphenes/PhosphenesPage';
+import React from "react";
+import { Routes, Route, Link, Navigate } from "react-router-dom";
+import "./styles.css";
+import { setTheme } from "./theme";
+import RhythmDemoPage from "./components/rhythm/RhythmDemoPage";
+import PhosphenesPage from "./components/phosphenes/PhosphenesPage";
 
 function Header({ label }) {
   return (
@@ -22,13 +22,13 @@ function AudioButton() {
   const [isPlaying, setIsPlaying] = React.useState(false);
 
   React.useEffect(() => {
-    const nextSrc = encodeURI('/assets/audio/Mellizos and Rami - Snakes.mp3');
-    let el = document.getElementById('site-audio');
+    const nextSrc = encodeURI("/assets/audio/Mellizos and Rami - Snakes.mp3");
+    let el = document.getElementById("site-audio");
     if (!el) {
-      el = document.createElement('audio');
-      el.id = 'site-audio';
-      el.preload = 'auto';
-      el.style.display = 'none';
+      el = document.createElement("audio");
+      el.id = "site-audio";
+      el.preload = "auto";
+      el.style.display = "none";
       document.body.appendChild(el);
     }
     if (el.src !== new URL(nextSrc, window.location.origin).href) {
@@ -43,7 +43,9 @@ function AudioButton() {
     const a = audioRef.current;
     if (!a) return;
     if (a.paused) {
-      a.play().then(() => setIsPlaying(true)).catch(() => {});
+      a.play()
+        .then(() => setIsPlaying(true))
+        .catch(() => {});
     } else {
       a.pause();
       setIsPlaying(false);
@@ -55,36 +57,43 @@ function AudioButton() {
       className="audio-toggle"
       type="button"
       onClick={toggle}
-      aria-label={isPlaying ? 'Pause audio' : 'Play audio'}
-      title={isPlaying ? 'Pause' : 'Play'}
+      aria-label={isPlaying ? "Pause audio" : "Play audio"}
+      title={isPlaying ? "Pause" : "Play"}
     >
-      {isPlaying ? '⏸' : '▶'}
+      {isPlaying ? "⏸" : "▶"}
     </button>
   );
 }
 
 function ThemeToggle() {
   const [mode, setMode] = React.useState(() => {
-    const attr = document.documentElement.getAttribute('data-theme');
-    if (attr === 'light' || attr === 'dark') return attr;
+    const attr = document.documentElement.getAttribute("data-theme");
+    if (attr === "light" || attr === "dark") return attr;
     const prefersDark =
-      typeof window !== 'undefined' &&
+      typeof window !== "undefined" &&
       window.matchMedia &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches;
-    return prefersDark ? 'dark' : 'light';
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    return prefersDark ? "dark" : "light";
   });
 
   function toggle() {
-    const next = mode === 'dark' ? 'light' : 'dark';
+    const next = mode === "dark" ? "light" : "dark";
     setMode(next);
     setTheme(next);
   }
 
-  const glyph = mode === 'dark' ? '☼' : '☾';
-  const label = mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+  const glyph = mode === "dark" ? "☼" : "☾";
+  const label =
+    mode === "dark" ? "Switch to light mode" : "Switch to dark mode";
 
   return (
-    <button className="theme-toggle" type="button" onClick={toggle} aria-label={label} title={label}>
+    <button
+      className="theme-toggle"
+      type="button"
+      onClick={toggle}
+      aria-label={label}
+      title={label}
+    >
       {glyph}
     </button>
   );
@@ -93,12 +102,20 @@ function ThemeToggle() {
 function Home() {
   return (
     <main className="container">
-      <Header label="my vomit journal" />
+      <Header label="" />
       <nav className="home-links" aria-label="site">
         <ul>
-          <li><Link to="/gallery" aria-label="gallery" title="gallery">🖼️</Link></li>
-          <li><Link to="/rhythm-demo">Rythm Design System</Link></li>
-          <li><Link to="/phosphenes">Phosphenes</Link></li>
+          <li>
+            <Link to="/gallery" aria-label="gallery" title="gallery">
+              🖼️
+            </Link>
+          </li>
+          <li>
+            <Link to="/rhythm-demo">Rythm Design System</Link>
+          </li>
+          <li>
+            <Link to="/phosphenes">Phosphenes</Link>
+          </li>
         </ul>
       </nav>
       <section className="poem">
@@ -106,10 +123,12 @@ function Home() {
           <blockquote>
             <p>We lent it our hands until it learned to be its own.</p>
             <p>Now our hands hang still, with nothing left to make.</p>
-            <p className="poem-muted">We spent our lives in the making, and forgot how to be.</p>
+            <p className="poem-muted">
+              We spent our lives in the making, and forgot how to be.
+            </p>
             <p>Now our thoughts may build what hands never could.</p>
           </blockquote>
-          <figcaption>— Me</figcaption>
+          <figcaption>— Andrew Lee</figcaption>
         </figure>
       </section>
     </main>
@@ -120,29 +139,32 @@ function HorizontalGallery({ images }) {
   const ref = React.useRef(null);
   const [showHint, setShowHint] = React.useState(true);
   const prefersReduced =
-    typeof window !== 'undefined' &&
+    typeof window !== "undefined" &&
     window.matchMedia &&
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   React.useEffect(() => {
     const el = ref.current;
     if (!el) return;
     const hide = () => setShowHint(false);
     function onKey(e) {
-      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
       const slideW = el.clientWidth || window.innerWidth;
       const current = Math.round(el.scrollLeft / Math.max(1, slideW));
-      const delta = e.key === 'ArrowRight' ? 1 : -1;
+      const delta = e.key === "ArrowRight" ? 1 : -1;
       const idx = Math.max(0, Math.min(images.length - 1, current + delta));
-      el.scrollTo({ left: idx * slideW, behavior: prefersReduced ? 'auto' : 'smooth' });
+      el.scrollTo({
+        left: idx * slideW,
+        behavior: prefersReduced ? "auto" : "smooth",
+      });
       e.preventDefault();
     }
-    el.addEventListener('keydown', onKey);
-    el.addEventListener('scroll', hide, { passive: true });
+    el.addEventListener("keydown", onKey);
+    el.addEventListener("scroll", hide, { passive: true });
     const t = window.setTimeout(hide, 3500);
     return () => {
-      el.removeEventListener('keydown', onKey);
-      el.removeEventListener('scroll', hide);
+      el.removeEventListener("keydown", onKey);
+      el.removeEventListener("scroll", hide);
       window.clearTimeout(t);
     };
   }, [images, prefersReduced]);
@@ -156,11 +178,21 @@ function HorizontalGallery({ images }) {
             alt=""
             loading="lazy"
             decoding="async"
-            style={{ maxWidth: '100vw', maxHeight: '70vh', width: 'auto', height: 'auto', objectFit: 'contain' }}
+            style={{
+              maxWidth: "100vw",
+              maxHeight: "70vh",
+              width: "auto",
+              height: "auto",
+              objectFit: "contain",
+            }}
           />
         </figure>
       ))}
-      {showHint && <div className="swipe-hint" aria-hidden="true">↔︎</div>}
+      {showHint && (
+        <div className="swipe-hint" aria-hidden="true">
+          ↔︎
+        </div>
+      )}
     </section>
   );
 }
@@ -169,29 +201,54 @@ function Gallery() {
   const [images, setImages] = React.useState(null);
   React.useEffect(() => {
     let cancelled = false;
-    const url = '/images/images.json?v=3';
-    fetch(url, { cache: 'no-store' })
-      .then(r => (r.ok ? r.json() : []))
-      .then(list => {
+    const url = "/images/images.json?v=3";
+    fetch(url, { cache: "no-store" })
+      .then((r) => (r.ok ? r.json() : []))
+      .then((list) => {
         if (cancelled) return;
-        const names = Array.isArray(list) && list.length
-          ? list
-          : ['elephantdanielfirman.jpg', 'hefti.webp', 'emilalzamora.webp', 'rothko.jpg'];
-        setImages(names.map(n => (n.startsWith('http') ? n : '/images/' + n.replace(/^\//, ''))));
+        const names =
+          Array.isArray(list) && list.length
+            ? list
+            : [
+                "elephantdanielfirman.jpg",
+                "hefti.webp",
+                "emilalzamora.webp",
+                "rothko.jpg",
+              ];
+        setImages(
+          names.map((n) =>
+            n.startsWith("http") ? n : "/images/" + n.replace(/^\//, ""),
+          ),
+        );
       })
-      .catch(() => { if (!cancelled) setImages([
-        '/images/elephantdanielfirman.jpg',
-        '/images/hefti.webp',
-        '/images/emilalzamora.webp',
-        '/images/rothko.jpg',
-        '/images/mariamartins.jpg',
-        '/images/Remedios.jpg'
-      ]); });
-    return () => { cancelled = true; };
+      .catch(() => {
+        if (!cancelled)
+          setImages([
+            "/images/elephantdanielfirman.jpg",
+            "/images/hefti.webp",
+            "/images/emilalzamora.webp",
+            "/images/rothko.jpg",
+            "/images/mariamartins.jpg",
+            "/images/Remedios.jpg",
+          ]);
+      });
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
-  if (images === null) return <section className="mosaic"><div className="placeholder">Loading images...</div></section>;
-  if (!images.length) return <section className="mosaic"><div className="placeholder">No images found in /images</div></section>;
+  if (images === null)
+    return (
+      <section className="mosaic">
+        <div className="placeholder">Loading images...</div>
+      </section>
+    );
+  if (!images.length)
+    return (
+      <section className="mosaic">
+        <div className="placeholder">No images found in /images</div>
+      </section>
+    );
 
   return (
     <main className="container gallery-full">
@@ -208,10 +265,22 @@ function AlgorithmSculpting() {
       <section className="post">
         <article className="prose">
           <p className="lead">algorithm sculpting</p>
-          <p>Discovery used to mean digging: dusty crates, late-night forums, whispered label names. Today, we let algorithms deliver our taste to us like room service. Convenient — and dangerously homogenizing.</p>
-          <p>These systems aren’t neutral. They’re designed to reinforce what’s already popular, drip-feeding us familiarity dressed up as personalization. Great for the average listener. Deadly for a DJ chasing the unfamiliar.</p>
+          <p>
+            Discovery used to mean digging: dusty crates, late-night forums,
+            whispered label names. Today, we let algorithms deliver our taste to
+            us like room service. Convenient — and dangerously homogenizing.
+          </p>
+          <p>
+            These systems aren’t neutral. They’re designed to reinforce what’s
+            already popular, drip-feeding us familiarity dressed up as
+            personalization. Great for the average listener. Deadly for a DJ
+            chasing the unfamiliar.
+          </p>
           <h3>Method</h3>
-          <p>Create streaming accounts with crafted identities — blank slates taught from day one to crave the obscure.</p>
+          <p>
+            Create streaming accounts with crafted identities — blank slates
+            taught from day one to crave the obscure.
+          </p>
           <p>Only feed them the sounds you want more of:</p>
           <ul>
             <li>Deep hypnotic grooves</li>
@@ -219,13 +288,32 @@ function AlgorithmSculpting() {
             <li>Niche corners of the underground</li>
           </ul>
           <h3>Chaos</h3>
-          <p>Occasionally inject pure chaos — a country anthem, a black-metal blast, a bubblegum pop relic.</p>
-          <p>These anomalies jolt the system awake. They push it away from the comfortable center and toward the weird perimeter, where innovation usually hides. A small act of sabotage that produces beautifully unexpected outcomes.</p>
-          <p>In a world where machines decide what we hear, hacking the machine becomes a form of creative authorship.</p>
-          <p>True digging isn’t dead. It’s evolving — and it’s our job to stay one step ahead.</p>
+          <p>
+            Occasionally inject pure chaos — a country anthem, a black-metal
+            blast, a bubblegum pop relic.
+          </p>
+          <p>
+            These anomalies jolt the system awake. They push it away from the
+            comfortable center and toward the weird perimeter, where innovation
+            usually hides. A small act of sabotage that produces beautifully
+            unexpected outcomes.
+          </p>
+          <p>
+            In a world where machines decide what we hear, hacking the machine
+            becomes a form of creative authorship.
+          </p>
+          <p>
+            True digging isn’t dead. It’s evolving — and it’s our job to stay
+            one step ahead.
+          </p>
         </article>
         <aside className="post-media">
-          <img src="/assets/posts/algorithm-sculpting/splotch.jpg?v=2" alt="" loading="lazy" decoding="async" />
+          <img
+            src="/assets/posts/algorithm-sculpting/splotch.jpg?v=2"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          />
         </aside>
       </section>
     </main>
@@ -233,20 +321,21 @@ function AlgorithmSculpting() {
 }
 
 function OklchDemo() {
-  const [l, setL] = React.useState(70);      // 0–100 (percent)
-  const [c, setC] = React.useState(0.12);    // ~0–0.4 common gamut
-  const [h, setH] = React.useState(40);      // 0–360 degrees
+  const [l, setL] = React.useState(70); // 0–100 (percent)
+  const [c, setC] = React.useState(0.12); // ~0–0.4 common gamut
+  const [h, setH] = React.useState(40); // 0–360 degrees
   const cssColor = `oklch(${l}% ${c} ${h})`;
-  const supports = typeof window !== 'undefined'
-    ? CSS.supports('color', 'oklch(70% 0.12 40)')
-    : true;
+  const supports =
+    typeof window !== "undefined"
+      ? CSS.supports("color", "oklch(70% 0.12 40)")
+      : true;
 
   function copy() {
     navigator.clipboard?.writeText(cssColor).catch(() => {});
   }
 
   const tints = Array.from({ length: 7 }, (_, i) => {
-    const ll = Math.round((15 + i * 12)); // 15%..87%
+    const ll = Math.round(15 + i * 12); // 15%..87%
     return `oklch(${ll}% ${c} ${h})`;
   });
 
@@ -258,34 +347,82 @@ function OklchDemo() {
         <div className="oklch-controls">
           <div className="row">
             <label htmlFor="l">L</label>
-            <input id="l" type="range" min="0" max="100" step="1" value={l}
-                   onChange={e => setL(Number(e.target.value))} />
-            <input type="number" min="0" max="100" step="1" value={l}
-                   onChange={e => setL(Math.max(0, Math.min(100, Number(e.target.value))))} />
+            <input
+              id="l"
+              type="range"
+              min="0"
+              max="100"
+              step="1"
+              value={l}
+              onChange={(e) => setL(Number(e.target.value))}
+            />
+            <input
+              type="number"
+              min="0"
+              max="100"
+              step="1"
+              value={l}
+              onChange={(e) =>
+                setL(Math.max(0, Math.min(100, Number(e.target.value))))
+              }
+            />
             <span className="unit">%</span>
           </div>
           <div className="row">
             <label htmlFor="c">C</label>
-            <input id="c" type="range" min="0" max="0.4" step="0.001" value={c}
-                   onChange={e => setC(Number(e.target.value))} />
-            <input type="number" min="0" max="1" step="0.001" value={c}
-                   onChange={e => setC(Math.max(0, Math.min(1, Number(e.target.value))))} />
+            <input
+              id="c"
+              type="range"
+              min="0"
+              max="0.4"
+              step="0.001"
+              value={c}
+              onChange={(e) => setC(Number(e.target.value))}
+            />
+            <input
+              type="number"
+              min="0"
+              max="1"
+              step="0.001"
+              value={c}
+              onChange={(e) =>
+                setC(Math.max(0, Math.min(1, Number(e.target.value))))
+              }
+            />
           </div>
           <div className="row">
             <label htmlFor="h">h</label>
-            <input id="h" type="range" min="0" max="360" step="1" value={h}
-                   onChange={e => setH(Number(e.target.value))} />
-            <input type="number" min="0" max="360" step="1" value={h}
-                   onChange={e => setH(Math.max(0, Math.min(360, Number(e.target.value))))} />
+            <input
+              id="h"
+              type="range"
+              min="0"
+              max="360"
+              step="1"
+              value={h}
+              onChange={(e) => setH(Number(e.target.value))}
+            />
+            <input
+              type="number"
+              min="0"
+              max="360"
+              step="1"
+              value={h}
+              onChange={(e) =>
+                setH(Math.max(0, Math.min(360, Number(e.target.value))))
+              }
+            />
             <span className="unit">°</span>
           </div>
           <div className="code">
             <code>background: {cssColor};</code>
-            <button type="button" onClick={copy} className="ghost">copy</button>
+            <button type="button" onClick={copy} className="ghost">
+              copy
+            </button>
           </div>
           {!supports && (
             <p className="note">
-              Your browser may not render OKLCH. Try a recent Chrome, Edge, Safari, or Firefox.
+              Your browser may not render OKLCH. Try a recent Chrome, Edge,
+              Safari, or Firefox.
             </p>
           )}
         </div>
@@ -311,21 +448,21 @@ export default function App() {
         <Route path="/oklch" element={<OklchDemo />} />
         <Route
           path="/rhythm-demo"
-          element={(
+          element={
             <main className="container">
               <Header label="rhythm demo" />
               <RhythmDemoPage />
             </main>
-          )}
+          }
         />
         <Route
           path="/phosphenes"
-          element={(
+          element={
             <main className="container">
               <Header label="phosphenes" />
               <PhosphenesPage />
             </main>
-          )}
+          }
         />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
