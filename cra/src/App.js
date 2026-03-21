@@ -4,6 +4,7 @@ import "./styles.css";
 import { setTheme } from "./theme";
 import RhythmDemoPage from "./components/rhythm/RhythmDemoPage";
 import PhosphenesPage from "./components/phosphenes/PhosphenesPage";
+import RiveTestPage from "./components/test/RiveTestPage";
 
 function Header({ label }) {
   return (
@@ -115,6 +116,9 @@ function Home() {
           </li>
           <li>
             <Link to="/phosphenes">Phosphenes</Link>
+          </li>
+          <li>
+            <Link to="/test">Test</Link>
           </li>
         </ul>
       </nav>
@@ -446,6 +450,15 @@ export default function App() {
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/algorithm-sculpting" element={<AlgorithmSculpting />} />
         <Route path="/oklch" element={<OklchDemo />} />
+        <Route
+          path="/test"
+          element={
+            <main className="container">
+              <Header label="test" />
+              <RiveTestPage />
+            </main>
+          }
+        />
         <Route
           path="/rhythm-demo"
           element={

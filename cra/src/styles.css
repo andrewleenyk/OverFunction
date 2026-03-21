@@ -408,3 +408,29 @@ a:active {
 .poem-card .poem-muted {
   color: var(--muted);
 }
+
+/* Rive test page */
+.rive-test {
+  min-height: calc(100vh - 84px);
+  display: grid;
+  place-items: center;
+}
+
+.rive-test__stage {
+  width: min(960px, calc(100vw - 32px));
+  aspect-ratio: 16 / 10;
+}
+
+.rive-test__canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.rive-test__error {
+  position: fixed;
+  left: 16px;
+  bottom: 16px;
+  margin: 0;
+  color: #b42318;
+}
