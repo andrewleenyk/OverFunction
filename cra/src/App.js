@@ -118,7 +118,7 @@ function Home() {
             <Link to="/phosphenes">Phosphenes</Link>
           </li>
           <li>
-            <Link to="/test">Test</Link>
+            <Link to="/test">Strum</Link>
           </li>
         </ul>
       </nav>
@@ -454,7 +454,7 @@ export default function App() {
           path="/test"
           element={
             <main className="container">
-              <Header label="test" />
+              <Header label="Strum" />
               <RiveTestPage />
             </main>
           }
